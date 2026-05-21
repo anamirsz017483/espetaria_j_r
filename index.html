@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espetaria J&R</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="cover" class="cover">
+      <div class="cover-overlay"></div>
+      <div class="cover-card">
+        <div class="cover-badges">
+          <span class="brand-badge">ESPETARIA J&amp;R</span>
+          <span class="cover-tag">Pedido rápido pelo WhatsApp</span>
+        </div>
+
+        <div class="cover-grid">
+          <div class="cover-copy">
+            <p class="eyebrow">Bem-vindo(a)</p>
+            <h1>Seu pedido de espetos, bonito, rápido e direto no WhatsApp.</h1>
+            <p class="lead">
+              Faça seu cadastro na capa, escolha os espetos de R$ 10,00, selecione a forma de pagamento e envie o pedido para a espeteria.
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <span>1</span>
+                <strong>Cadastro / Login</strong>
+                <small>Digite seus dados para continuar.</small>
+              </div>
+              <div class="step">
+                <span>2</span>
+                <strong>Escolha os espetos</strong>
+                <small>Monte o pedido com quantos quiser.</small>
+              </div>
+              <div class="step">
+                <span>3</span>
+                <strong>Envie no WhatsApp</strong>
+                <small>O valor total vai junto na mensagem.</small>
+              </div>
+            </div>
+          </div>
+
+          <form id="authForm" class="auth-form">
+            <div class="auth-header">
+              <h2>Cadastro / Login</h2>
+              <p>Crie sua conta ou entre com seus dados já cadastrados.</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist" aria-label="Cadastro e login">
+              <button type="button" class="auth-tab active" data-mode="register">Cadastrar</button>
+              <button type="button" class="auth-tab" data-mode="login">Entrar</button>
+            </div>
+
+            <div id="registerFields" class="auth-fields">
+              <label>
+                Nome completo
+                <input id="name" type="text" placeholder="Seu nome" autocomplete="name" required />
+              </label>
+              <label>
+                WhatsApp
+                <input id="customerPhone" type="tel" placeholder="(00) 00000-0000" autocomplete="tel" required />
+              </label>
+              <label>
+                E-mail
+                <input id="email" type="email" placeholder="voce@email.com" autocomplete="email" required />
+              </label>
+              <label>
+                Senha
+                <input id="password" type="password" placeholder="Crie uma senha" autocomplete="new-password" required />
+              </label>
+            </div>
+
+            <div id="loginFields" class="auth-fields hidden">
+              <label>
+                WhatsApp ou e-mail
+                <input id="loginId" type="text" placeholder="Digite seu WhatsApp ou e-mail" autocomplete="username" />
+              </label>
+              <label>
+                Senha
+                <input id="loginPassword" type="password" placeholder="Sua senha" autocomplete="current-password" />
+              </label>
+            </div>
+
+            <button id="authSubmit" type="submit" class="btn btn-primary">Criar cadastro e continuar</button>
+            <small id="authHint">Os dados ficam salvos apenas neste aparelho.</small>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="app" class="app hidden">
+      <header class="topbar">
+        <div>
+          <span class="topbar-kicker">Espetaria J&amp;R</span>
+          <h1>Monte seu pedido</h1>
+        </div>
+        <div class="topbar-user">
+          <div class="user-chip" id="userChip">Bem-vindo(a)</div>
+          <button id="logoutBtn" class="btn btn-ghost" type="button">Sair</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-text">
+          <p class="hero-tag">Cada espeto: R$ 10,00</p>
+          <h2>Escolha seus favoritos e finalize em segundos.</h2>
+          <p>
+            O pedido é montado automaticamente com o valor total e enviado para o WhatsApp da espetaria.
+          </p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-stat">
+            <strong id="cartCount">0</strong>
+            <span>itens no carrinho</span>
+          </div>
+          <div class="hero-stat">
+            <strong>R$ <span id="totalPrice">0,00</span></strong>
+            <span>valor total</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="layout">
+        <div class="catalog">
+          <div class="section-title">
+            <h3>Espetos</h3>
+            <p>Toque em “Adicionar” para montar seu pedido.</p>
+          </div>
+          <div id="products" class="product-grid"></div>
+        </div>
+
+        <aside class="checkout">
+          <div class="section-title">
+            <h3>Seu pedido</h3>
+            <p>Confira os itens, escolha o pagamento e envie.</p>
+          </div>
+
+          <div id="cartList" class="cart-list"></div>
+
+          <div class="payment-box">
+            <h4>Forma de pagamento</h4>
+            <div class="payment-row">
+              <label class="payment-option"><input type="radio" name="payment" value="Débito" checked> Débito</label>
+              <label class="payment-option"><input type="radio" name="payment" value="Pix"> Pix</label>
+              <label class="payment-option"><input type="radio" name="payment" value="Dinheiro"> Dinheiro</label>
+              <label class="payment-option"><input type="radio" name="payment" value="Crédito"> Crédito</label>
+            </div>
+          </div>
+
+          <label class="notes">
+            Observação
+            <textarea id="notes" rows="4" placeholder="Ex.: Com limão e farinha, ou sem nada"></textarea>
+          </label>
+
+          <button id="sendWhatsApp" class="btn btn-primary btn-full" type="button">Enviar pedido no WhatsApp</button>
+          <button id="resetOrder" class="btn btn-secondary btn-full" type="button">Limpar carrinho</button>
+          <button id="cancelOrder" class="btn btn-danger btn-full" type="button">Cancelar pedido</button>
+        </aside>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
